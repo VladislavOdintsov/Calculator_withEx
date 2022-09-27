@@ -1,3 +1,6 @@
+package calculator_withEx.src;
+
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Calculator_withEx {
@@ -76,9 +79,9 @@ public class Calculator_withEx {
             }
             output = String.valueOf(result);
         } else if (check2 == 2) {
-            int value1 = 0;
-            int value2 = 0;
-            switch (inputArr[0]) {
+            int value1 = convRomanToArabian(inputArr[0]);
+            int value2 = convRomanToArabian(inputArr[2]);
+            /*switch (inputArr[0]) {
                 case "I":
                     value1 = 1;
                     break;
@@ -141,7 +144,7 @@ public class Calculator_withEx {
                 case "X":
                     value2 = 10;
                     break;
-            }
+            }*/
 
             switch (inputArr[1]) {
                 case "+":
@@ -338,6 +341,31 @@ public class Calculator_withEx {
             input = s.nextLine();
         }
         System.out.println("Вы вышли из калькулятора");
+    }
+    public static int convRomanToArabian (String input){
+        HashMap<Character, Integer> map = new HashMap<>();
+        map.put('I', 1);
+        map.put('V', 5);
+        map.put('X', 10);
+        map.put('L', 50);
+        map.put('C', 100);
+        char [] inputArr = input.toCharArray();
+        int s;
+        int output = map.get(inputArr[inputArr.length-1]);
+        //if (inputArr.length>1){
+        for (int i = inputArr.length-2; i >= 0; i--){
+            s = map.get(inputArr[i]);
+            if (s < map.get(inputArr[i+1])){
+                output -= map.get(inputArr[i]);
+                //i--;
+            }else{
+                output += map.get(inputArr[i]);
+            }
+        }
+        //}//else{
+        //output = Integer.parseInt(inputArr[inputArr.length-1]);
+        //}
+        return output;
     }
 }
 
