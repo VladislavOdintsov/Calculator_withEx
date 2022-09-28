@@ -2,6 +2,7 @@ package calculator_withEx.src;
 
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Calculator_withEx {
     public static String calc(String input) throws ScannerException {
@@ -177,7 +178,7 @@ public class Calculator_withEx {
                         //return calc(input);
                     }
             }
-            switch (result){
+            /*switch (result){
                 case 1:
                     output = "I";
                     break;
@@ -316,7 +317,7 @@ public class Calculator_withEx {
                 case 100:
                     output = "C";
                     break;
-            }
+            }*/
 
         } else {
             throw new ScannerException("Некорректный ввод.");
@@ -325,6 +326,7 @@ public class Calculator_withEx {
             //input = s.nextLine();
             //return calc(input);
         }
+        output = convArabianToRoman(result);
         return output;
     }
 
@@ -366,6 +368,27 @@ public class Calculator_withEx {
         //output = Integer.parseInt(inputArr[inputArr.length-1]);
         //}
         return output;
+    }
+
+    public static String convArabianToRoman (int result) {
+        TreeMap<Integer, String> arabianKeyMap = new TreeMap<>();
+        arabianKeyMap.put(100, "C");
+        arabianKeyMap.put(90, "XC");
+        arabianKeyMap.put(50, "L");
+        arabianKeyMap.put(40, "XL");
+        arabianKeyMap.put(10, "X");
+        arabianKeyMap.put(9, "IX");
+        arabianKeyMap.put(5, "V");
+        arabianKeyMap.put(4, "IV");
+        arabianKeyMap.put(1, "I");
+        String roman = "";
+        int arabianKey;
+        do {
+            arabianKey = arabianKeyMap.floorKey(result);
+            roman += arabianKeyMap.get(arabianKey);
+            result -= arabianKey;
+        } while (result != 0);
+        return roman;
     }
 }
 
