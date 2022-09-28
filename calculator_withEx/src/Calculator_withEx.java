@@ -178,6 +178,7 @@ public class Calculator_withEx {
                         //return calc(input);
                     }
             }
+            output = convArabianToRoman(result);
             /*switch (result){
                 case 1:
                     output = "I";
@@ -326,7 +327,6 @@ public class Calculator_withEx {
             //input = s.nextLine();
             //return calc(input);
         }
-        output = convArabianToRoman(result);
         return output;
     }
 
